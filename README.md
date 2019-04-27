@@ -89,4 +89,5 @@ import RNLockTask from 'react-native-lock-task';
 RNLockTask.startLockTask();
 RNLockTask.stopLockTask();
 RNLockTask.clearDeviceOwnerApp();
+RNLockTask.isInLockTask(); // return promise that resolve to true to false
 ```
