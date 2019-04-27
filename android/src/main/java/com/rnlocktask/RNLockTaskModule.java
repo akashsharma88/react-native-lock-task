@@ -69,4 +69,24 @@ public class RNLockTaskModule extends ReactContextBaseJavaModule {
     } catch (Exception e) {
     }
   }
+  
+  @ReactMethod
+  public void isInLockTask(Promise promise) {
+    try {
+      Activity mActivity = reactContext.getCurrentActivity();
+      boolean isLockTaskModeRunning = false;
+
+      ActivityManager activityManager = (ActivityManager) mActivity.getSystemService(Context.ACTIVITY_SERVICE);
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        isLockTaskModeRunning = activityManager.getLockTaskModeState() != ActivityManager.LOCK_TASK_MODE_NONE;
+      } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        // Deprecated in API level 23.
+        isLockTaskModeRunning = activityManager.isInLockTaskMode();
+      }
+      promise.resolve(isLockTaskModeRunning);
+
+    } catch (Exception e) {
+      promise.reject(E_LOCK_TASK, e);
+    }
+  }
 }
