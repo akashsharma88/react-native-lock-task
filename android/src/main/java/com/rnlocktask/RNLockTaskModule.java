@@ -12,10 +12,13 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.Promise;
+import android.app.ActivityManager;
 
 public class RNLockTaskModule extends ReactContextBaseJavaModule {
 
   private final ReactApplicationContext reactContext;
+  private final String E_LOCK_TASK = "E_LOCK_TASK";
 
   public RNLockTaskModule(ReactApplicationContext reactContext) {
     super(reactContext);
